@@ -1,0 +1,329 @@
+
+#shopNav
+{
+  margin:auto;
+  margin-top:1%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width:99%;
+  padding-bottom:5px;
+  border-bottom:1px solid black;
+}
+.shopCat
+{
+  float:left;
+  text-align:center;
+  cursor: pointer;;
+  padding-bottom:3px;
+  font-family: "Helvetica";
+}
+.shopCat > div > span
+{
+  font-size:25px;
+  transition: border-bottom .1s;
+  font-family: "Helvetica"
+}
+
+
+.shopCat > div
+{
+  position: relative;
+}
+.bar
+{
+  position: absolute;
+  margin:0px;
+  width:0px;
+  height:3px;
+  background: dodgerblue;
+  transition: width .1s;
+  border-radius:10000px;
+}
+.shopCat:hover > div >.bar
+{
+ width: 100% !important;;
+}
+.activeS
+{
+  width:100% !important;
+  transition: none !important;
+}
+@media screen and (max-width:540px)
+{
+  #shopNav
+  {
+    flex-direction: column;
+  }
+  .shopCat
+  {
+    width:100%;
+    margin-top:5px;
+    float:none;
+  }
+  .shopCat > div
+  {
+    display:inline-block;
+  }
+}
+
+
+#tolCopy > p, #tol >p
+{
+  text-align:center;
+  font-size:25px;
+}
+#tolCopy > select, #tol > select
+{
+  font-family: 'Dancing Script', cursive;;
+  font-size:50px;
+  border:none;
+  border-bottom:2px solid black;
+  background:none;
+  color:#faa000;
+  text-align: center;
+  display:block;
+  margin:auto;
+}
+#ti
+{
+
+  width:40%;
+  font-size: 25px;
+  background:dodgerblue;
+  border-radius:5px;
+  color:white;
+  margin:auto;
+  margin-top:5%;
+  padding:10px 20px;
+}
+#ti:hover
+{
+  cursor: pointer;
+  background:#1e90ffcc;
+}
+#ti > div
+{
+  text-align: center;
+}
+
+/*Tree of life code */
+#i
+{
+  position: relative;
+  user-select:none;
+  box-sizing:border-box;
+  display:table;
+  font-family: 'Dancing Script', cursive;;
+  font-size:50px;;
+  margin:auto;
+  text-align:center;
+  cursor:pointer;
+}
+
+#i > i
+{
+  font-size:17px !important;
+}
+
+#i:hover
+{
+  cursor:pointer;
+}
+#options
+{
+  display:none;
+  position:absolute;
+  z-index:5;
+  cursor:pointer;
+}
+
+.opened
+{
+  outline:2px solid rgb(181, 213, 255);
+  border-bottom:2px solid rgba(0,0,0,0);
+
+  
+}
+.closed
+{
+  border:none;
+  border-bottom:2px solid black;
+}
+#options{
+  box-sizing:border-box;
+  background: white;
+  outline:2px solid rgb(182,213,255);
+}
+#options div
+{
+  box-sizing:border-box;
+}
+#options div:hover
+{
+  background:dodgerblue;
+}
+
+.hidden
+{
+  display:none;
+}
+
+#shopWindow
+{
+  width:100%;
+  font-family: "Helvetica";
+}
+
+.shopBox
+{
+  width:14rem;
+  height:14rem;
+  background:red;
+  border-radius:5px;
+  border:2px solid rgba(0,0,0,0.13);
+  background:url("https://www.healingstore.net/wp-content/uploads/2016/11/s-l1600.jpg");
+  background-position:center;
+  background-size:cover;
+  position:relative;
+  float:left;
+  
+
+}
+.first
+{
+  margin-left:0px !important;
+}
+.itemName
+{
+  position:absolute;
+  display:inline;
+  bottom:0;
+  right:0;
+  left:0;
+  height:30%;
+  text-align:center;
+  background:white;
+  transition:height .3s;
+  overflow:hidden;
+  font-size:25px;
+}
+.shopBox:hover .itemName
+{
+  height:50%;
+}
+.price
+{
+  opacity:0;
+  transition:opacity .5s;
+}
+.shopBox:hover .price
+{
+  opacity: 1;
+}
+#rStonesCopy
+{
+  margin:auto;
+  margin-top:10%;
+  
+}
+.spacer
+{
+  float:left;
+  height:1px;
+}
+.rowDivider
+{
+  clear:both;
+  height:4rem;
+
+}
+
+/* for the showcase */
+html
+{
+  font-family:helvetica;
+}
+
+#displayHolder
+{
+  margin-top:3%;
+}
+.circle
+{
+  height:100px;
+  width:100px;
+  background:red;
+  border-radius:100%;
+  float:left;
+  position:absolute;
+  border:3px solid dodgerblue;
+  background:url('https://cdn.shopify.com/s/files/1/2190/4051/products/PBB06S-sterling-silver-necklace-pendant-butterfly-Magento_2000x.jpg?v=1535605539');
+  background-position:center;
+  background-size:cover;
+  transition:margin-top .5s,margin-left .3s;
+  cursor:pointer;
+}
+
+#a1
+{
+  z-index:1;
+}
+#a2
+{
+  margin-left:50px;
+  z-index:2;
+}
+#a3
+{
+  margin-left:100px;
+  z-index:3;
+  
+}
+#a4
+{
+  margin-left:150px;
+  z-index:2;
+}
+#a5
+{
+  margin-left:200px;
+  z-index:1;
+}
+
+/*
+circle:hover
+{
+  margin-top:-5%;
+  z-index:40 !important;
+}
+
+.circle:hover ~ .activeCircle
+{
+  margin-top:0% !important;
+ z-index: 0 !important;
+}
+*/
+.activeCircle
+{
+  margin-top:-5%;
+}
+/*
+.activeCircle:hover
+{
+  margin-top:-5%!important;
+}
+*/
+h1,h2
+{
+  text-align:center;
+}
+h2
+{
+  color:rgba(0,0,0,0.15);
+}
+#showCase
+{
+  margin-bottom:5%;
+}
+/* end */

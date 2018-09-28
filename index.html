@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shop- With Wings Jewelry</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+    <div id='navBar' class="header">
+        <span class="logo"><a id='c' href='#home'>With Wings Jewelry</a><span id='menuIcon' class="hamburger" onclick="showLinks()">
+    		<i class="fa fa-bars" id='icon-burger'></i></a>
+ 		 </span>
+ 		</span>
+        <div id='links' class="header-right">
+            <a href="#home">Home</a>
+            <a class="active" href="#shop">Shop</a>
+            <a href="#about">About</a>
+            <a href="#about">Locations</a>
+        </div> 
+    </div>
+
+    <div id='shopNav'>
+    	<div class='shopCat'><div><span>Raeki Stones</span><div class='bar'></div></div></div>
+    	<div class='shopCat'><div><span>Tree of Life</span><div class='bar activeS'></div></div></div>
+    	<div class='shopCat'><div><span>Stones</span><div class='bar'></div></div></div>
+    	<div class='shopCat'><div><span>Earrings</span><div class='bar'></div></div></div>
+    </div>
+	
+	<div id='tol'>
+		<p>What kind of wire should the tree be woven of</p>
+		<span id='i' class='closed' onclick='toggle()' style='color:silver'>Silver <i class="fa fa-sort-desc"></i>
+		    <div id='options'>
+		      <div style='color:gold' onclick='select(this,0)'>Gold</div>
+		      <div style='color:silver' onclick='select(this,1)'>Silver</div>
+		      <div onclick='select(this,2)' style='color:#e5e4e2'>Platnium</div>
+		  </div>
+		</span>
+		<p>What kind of stone</p>
+		<select>
+			<option>Granite</option>
+			<option style='color:silver'>stone1</option>
+			<option style='color:copper'>stone2</option>
+			<option style='color:brass'>stone3</option>
+		</select>
+
+		<div id='ti'>
+			<div>Add to cart</div>
+			<div>$20</div>
+		</div>
+	</div>
+    
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>

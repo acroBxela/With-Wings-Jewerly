@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shop-Wings With Jewelry</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" >
+    <link href="https://fonts.googleapis.com/css?family=Cedarville+Cursive" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/shop.css">
+    <link rel="stylesheet" type="text/css" href="../styles/navbar.css">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+    <div id='navBar' class="header">
+        <span class="logo"><a id='c' href='#home'>With Wings Jewelry</a><span id='menuIcon' class="hamburger" onclick="showLinks()">
+    		<i class="fa fa-bars" id='icon-burger'></i></a>
+ 		 </span>
+ 		</span>
+        <div id='links' class="header-right">
+            <a href="pages/home.html">Home</a>
+            <a class="active" href="pages/shop.html">Shop</a>
+            <a href="pages/about.html">About</a>
+            <a href="pages/locations.html">Locations</a>
+        </div> 
+    </div>
+
+    <div id='shopNav'>
+    	<div class='shopCat' onclick='show("rStones",this)';><div><span>Raeki Stones</span><div class='bar'></div></div></div>
+    	<div class='shopCat' onclick='show("tol",this)'><div><span>Tree of Life</span><div class='bar activeS'></div></div></div>
+    	<div class='shopCat' onclick='show("stones",this)'><div><span>Stones</span><div class='bar'></div></div></div>
+    	<div class='shopCat' onclick='show("earrings",this)'><div><span>Earrings</span><div class='bar'></div></div></div>
+    </div>
+    
+    <div id='shopWindow'>
+    	<div id='tol'>
+    		<p>What kind of wire should the tree be woven of</p>
+    		<span id='i' class='closed' onclick='toggle(this)' style='color:gold'>Gold <i class="fas fa-angle-down"></i>
+    		    <div id='options'>
+    		      <div style='color:gold' onclick='select(this,"gold",0)'>Gold</div>
+    		      <div style='color:silver' onclick='select(this,"silver",0)'>Silver</div>
+    		      <div onclick='select(this,"#e5e4e2",0)' style='color:#e5e4e2'>Platnium</div>
+    		  </div>
+    		</span>
+    		<p>What kind of stone</p>
+    		<span id='i' class='closed' onclick='toggle(this)' style='color:silver'>Granite <i class='fas fa-angle-down'></i>
+                <div id='options'>
+                  <div style='color:red' onclick='select(this,"red",1)'>Granite</div>
+                  <div style='color:silver' onclick='select(this,"silver",1)'>Stone 2</div>
+                  <div onclick='select(this,"#e5e4e2",1)' style='color:#e5e4e2'>Stone 3</div>
+              </div>
+            </span>
+
+    		<div id='ti'>
+    			<div>Add to cart</div>
+    			<div>$20</div>
+    		</div>
+    	</div>
+    </div>
+    
+    <div id='tol' class='hidden'>
+            <p>What kind of wire should the tree be woven of</p>
+            <span id='i' class='closed' onclick='toggle(this)' style='color:gold'>Gold <i class="fas fa-angle-down"></i>
+                <div id='options'>
+                  <div style='color:gold' onclick='select(this,"gold",0)'>Gold</div>
+                  <div style='color:silver' onclick='select(this,"silver",0)'>Silver</div>
+                  <div onclick='select(this,"#e5e4e2",0)' style='color:#e5e4e2'>Platnium</div>
+              </div>
+            </span>
+            <p>What kind of stone</p>
+            <span id='i' class='closed' onclick='toggle(this)' style='color:silver'>Granite <i class='fas fa-angle-down'></i>
+                <div id='options'>
+                  <div style='color:red' onclick='select(this,"red",1)'>Granite</div>
+                  <div style='color:silver' onclick='select(this,"silver",1)'>Stone 2</div>
+                  <div onclick='select(this,"#e5e4e2",1)' style='color:#e5e4e2'>Stone 3</div>
+              </div>
+            </span>
+
+            <div id='ti'>
+                <div>Add to cart</div>
+                <div>$20</div>
+            </div>
+        </div>
+    </div>
+
+    <div id='rStones' class='hidden'>
+        <div id='showCase'>
+        <div class='positioner'>
+            <div id='displayHolder'>
+              <div id='a1' data-layer='1' data-name='Butterfly Wings' class='circle'></div>
+              <div id='a2' data-layer='2' data-name='Item Name' class='circle'></div>
+              <div id='a3' data-layer='3' data-name='Angel Wings' class='circle activeCircle'></div>
+              <div id='a4' data-layer='2' data-name='Item Name' class='circle'></div>
+              <div id='a5' data-layer='1' data-name='Item Name' class='circle'></div>
+            </div>
+        </div>
+
+        <h2 id='showCaseItemname'>Angel Wings</h2>
+        <h1>Our Favorites</h1>
+         <div style='width:30%;margin:auto;padding:10px;background: dodgerblue;text-align: center;color:white;font-size:25px'>Shop</div>
+        </div>
+
+        <div id='itemsHolder'>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        <div class='shopBox'>
+          <div class='itemName'>Green and Blue stones</br><span class='price'>$12</span></div>
+        </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../scripts/navbar.js"></script>
+    <script type='text/javascript' src='../scripts/shop.js'></script>
+</body>
+
+</html>
