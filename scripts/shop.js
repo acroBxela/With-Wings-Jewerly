@@ -37,6 +37,11 @@ function changeToSelectedCategory(string, clicked) {
         setSpacers('stonesCopy');
         all('stonesCopy');
     }
+    if (string=='earrings')
+    {
+        setSpacers('earringsCopy');
+        all('earringsCopy');
+    }
 }
 
 var resizeTimer;
@@ -47,7 +52,7 @@ window.onresize = function() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
         setSpacers(currentlyOn);
-        all();
+        all(currentlyOn);
     }, 250);
 
 };
@@ -153,7 +158,7 @@ function all(category) {
     document.getElementById(category).getElementsByClassName('displayHolder')[0].style.width = ((circle.length + 1) * (width / 2)) + 'px';
     document.getElementById(category).getElementsByClassName('displayHolder')[0].style.height = width + 'px';
 
-    setHover();
+    setHover(category);
 }
 
 function setHover(category) {
@@ -191,16 +196,19 @@ function setHover(category) {
             setTimeout(function(a, b) {
 
 
-                document.getElementById(category).getElementsByClassName(a.classList)[0].style['z-index'] = b.getAttribute('data-layer');
-                document.getElementById(category).getElementsByClassName(b.classList)[0].classList.style['z-index'] = a.getAttribute('data-layer');
+                var clickedCircle = document.getElementById(category).getElementsByClassName(a.classList)[0];
+                var currentlyActiveCircle = document.getElementById(category).getElementsByClassName(b.classList[0])[0];
+                
+                clickedCircle.style['z-index'] = b.getAttribute('data-layer');
+                currentlyActiveCircle.style['z-index'] = a.getAttribute('data-layer');
 
-                var store = document.getElementById(a.id).dataset.layer;
-                document.getElementById(category).getElementsByClassName(a.classList)[0].dataset.layer = b.getAttribute('data-layer');
-                document.getElementById(category).getElementsByClassName(b.classList)[0].classList.dataset.layer = store;
+                var store = clickedCircle.dataset.layer;
+                clickedCircle.dataset.layer = b.getAttribute('data-layer');
+                currentlyActiveCircle.dataset.layer = store;
 
-                var storeId = a.classList;
-                document.getElementById(category).getElementsByClassName(a.classList)[0].classList = b.classList;
-                document.getElementById(category).getElementsByClassName(b.classList)[0].classList = storeId;
+                var storeId = a.classList.slice();
+                clickedCircle.classList = b.classList;
+                currentlyActiveCircle.classList = storeId;
             }, 350, this, active);
         };
     }
