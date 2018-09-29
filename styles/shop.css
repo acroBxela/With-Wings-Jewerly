@@ -214,7 +214,7 @@
     opacity: 1;
 }
 
-#rStonesCopy {
+#rStonesCopy,#stonesCopy {
     margin: auto;
     margin-top: 10%;
 }
@@ -255,26 +255,26 @@ html {
     cursor: pointer;
 }
 
-#a1 {
+.a1 {
     z-index: 1;
 }
 
-#a2 {
+.a2 {
     margin-left: 50px;
     z-index: 2;
 }
 
-#a3 {
+.a3 {
     margin-left: 100px;
     z-index: 3;
 }
 
-#a4 {
+.a4 {
     margin-left: 150px;
     z-index: 2;
 }
 
-#a5 {
+.a5 {
     margin-left: 200px;
     z-index: 1;
 }
@@ -315,7 +315,7 @@ h2 {
     color: rgba(0, 0, 0, 0.15);
 }
 
-#showCase {
+.showCase {
     margin-bottom: 5%;
 }
 

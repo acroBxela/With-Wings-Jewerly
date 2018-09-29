@@ -31,10 +31,12 @@ function changeToSelectedCategory(string, clicked) {
     }
     if (string == 'rStones') {
         setSpacers('rStonesCopy');
-        all();
+        all('rStonesCopy');
     }
-    if (string == 'stones')
+    if (string == 'stones'){
         setSpacers('stonesCopy');
+        all('stonesCopy');
+    }
 }
 
 var resizeTimer;
@@ -137,9 +139,9 @@ function setSelect() {
 
 //////////////////Show Case Code///////////////////////
 /////////////////////////////////////////////////////////
-function all() {
+function all(category) {
     var width = window.innerWidth * .20;
-    var circle = document.getElementById('rStonesCopy').getElementsByClassName('circle');
+    var circle =document.getElementById(category).getElementsByClassName('circle');
     for (let i = 0; i < circle.length; i++) {
         circle[i].style.width = width + 'px';
         circle[i].style.height = width + 'px';
@@ -147,38 +149,38 @@ function all() {
     }
     var middle = (window.innerWidth / 2) - ((circle.length - 1) * width / 2) + (width / 2);
     console.log(window.innerWidth / 2);
-    document.getElementById('displayHolder').style['margin-left'] = middle + 'px';
-    document.getElementById('displayHolder').style.width = ((circle.length + 1) * (width / 2)) + 'px';
-    document.getElementById('displayHolder').style.height = width + 'px';
+    document.getElementById(category).getElementsByClassName('displayHolder')[0].style['margin-left'] = middle + 'px';
+    document.getElementById(category).getElementsByClassName('displayHolder')[0].style.width = ((circle.length + 1) * (width / 2)) + 'px';
+    document.getElementById(category).getElementsByClassName('displayHolder')[0].style.height = width + 'px';
 
     setHover();
 }
 
-function setHover() {
-    var circle = document.getElementById('rStonesCopy').getElementsByClassName('circle');
+function setHover(category) {
+    var circle = document.getElementById(category).getElementsByClassName('circle');
     for (let i = 0; i < circle.length; i++) {
 
         circle[i].onmouseover = function() {
-            var active = document.getElementById('rStonesCopy').getElementsByClassName('activeCircle')[0];
+            var active = document.getElementById(category).getElementsByClassName('activeCircle')[0];
             if (this !== active) {
                 this.style['margin-top'] = "-5%";
                 this.style['z-index'] = '5';
                 active.style['margin-top'] = "0%";
                 active.style['z-index'] = active.getAttribute('data-layer');
-                document.getElementById('showCaseItemname').innerHTML = this.dataset.name
+                document.getElementById(category).getElementsByClassName('showCaseItemName')[0].innerHTML = this.dataset.name
             }
         };
         circle[i].onmouseleave = function() {
-            var active = document.getElementById('rStonesCopy').getElementsByClassName('activeCircle')[0];
+            var active = document.getElementById(category).getElementsByClassName('activeCircle')[0];
             this.style['margin-top'] = "0%";
             this.style['z-index'] = this.getAttribute('data-layer');
-            document.getElementById('rStonesCopy').getElementsByClassName('activeCircle')[0].style['margin-top'] = "-5%";;
-            document.getElementById('showCaseItemname').innerHTML = active.dataset.name;
+            document.getElementById(category).getElementsByClassName('activeCircle')[0].style['margin-top'] = "-5%";;
+            document.getElementById(category).getElementsByClassName('showCaseItemName')[0].innerHTML = active.dataset.name;
         };
 
         circle[i].onclick = function() {
             var store = this.style['margin-left'];
-            var active = document.getElementById('rStonesCopy').getElementsByClassName('activeCircle')[0];
+            var active = document.getElementById(category).getElementsByClassName('activeCircle')[0];
             active.classList.remove('activeCircle');
             this.classList.add('activeCircle');
             this.style['margin-left'] = active.style['margin-left'];
@@ -188,16 +190,17 @@ function setHover() {
 
             setTimeout(function(a, b) {
 
-                document.getElementById(a.id).style['z-index'] = b.getAttribute('data-layer');
-                document.getElementById(b.id).style['z-index'] = a.getAttribute('data-layer');
+
+                document.getElementById(category).getElementsByClassName(a.classList)[0].style['z-index'] = b.getAttribute('data-layer');
+                document.getElementById(category).getElementsByClassName(b.classList)[0].classList.style['z-index'] = a.getAttribute('data-layer');
 
                 var store = document.getElementById(a.id).dataset.layer;
-                document.getElementById(a.id).dataset.layer = b.getAttribute('data-layer');
-                document.getElementById(b.id).dataset.layer = store;
+                document.getElementById(category).getElementsByClassName(a.classList)[0].dataset.layer = b.getAttribute('data-layer');
+                document.getElementById(category).getElementsByClassName(b.classList)[0].classList.dataset.layer = store;
 
-                var storeId = a.id;
-                document.getElementById(a.id).id = b.id;
-                document.getElementById(b.id).id = storeId;
+                var storeId = a.classList;
+                document.getElementById(category).getElementsByClassName(a.classList)[0].classList = b.classList;
+                document.getElementById(category).getElementsByClassName(b.classList)[0].classList = storeId;
             }, 350, this, active);
         };
     }
