@@ -25,20 +25,20 @@ function changeToSelectedCategory(string, clicked) {
 
     currentlyOn = copyOfCategory.id;
     // Run custom code depending on which window is to be displayed
-    if (string == 'tol'){
+    if (string == 'tol') {
         setSelect();
-        currentlyOn=null;
+        currentlyOn = null;
     }
     if (string == 'rStones') {
         setSpacers('rStonesCopy');
         all('rStonesCopy');
+        
     }
-    if (string == 'stones'){
+    if (string == 'stones') {
         setSpacers('stonesCopy');
         all('stonesCopy');
     }
-    if (string=='earrings')
-    {
+    if (string == 'earrings') {
         setSpacers('earringsCopy');
         all('earringsCopy');
     }
@@ -146,7 +146,7 @@ function setSelect() {
 /////////////////////////////////////////////////////////
 function all(category) {
     var width = window.innerWidth * .20;
-    var circle =document.getElementById(category).getElementsByClassName('circle');
+    var circle = document.getElementById(category).getElementsByClassName('circle');
     for (let i = 0; i < circle.length; i++) {
         circle[i].style.width = width + 'px';
         circle[i].style.height = width + 'px';
@@ -198,7 +198,7 @@ function setHover(category) {
 
                 var clickedCircle = document.getElementById(category).getElementsByClassName(a.classList)[0];
                 var currentlyActiveCircle = document.getElementById(category).getElementsByClassName(b.classList[0])[0];
-                
+
                 clickedCircle.style['z-index'] = b.getAttribute('data-layer');
                 currentlyActiveCircle.style['z-index'] = a.getAttribute('data-layer');
 
@@ -275,3 +275,61 @@ function setSpacers(category) {
 }
 //////////////////End Of Raeki Stones Code////////////////////////
 /////////////////////////////////////////////////////////////////
+
+
+//////////////////////Shop View Code//////////////////////////
+//////////////////////////////////////////////////////////////
+
+function sizeImg(parent) {
+
+    var img = new Image();
+    img.src = parent.getElementsByClassName('imageInfo')[0].getAttribute('data-src');
+    img.onload = function(){
+        console.log("width is ", this.width);
+        console.log("heghit is " ,this.height)
+        var a = parent.getElementsByClassName('itemPicture')[0];
+        var aWidth = a.getBoundingClientRect().width;
+        var aH = a.getBoundingClientRect().height;
+        console.log(aH);
+        console.log(aWidth);
+        var maxWidth = aWidth; // Max width for the image
+        var maxHeight = aH; // Max height for the image
+        var ratio = 0; // Used for aspect ratio
+        var width = this.width // Current image width
+        var height = this.height; // Current image height
+
+        // Check if the current width is larger than the max
+        if (width > maxWidth) {
+            ratio = maxWidth / width; // get ratio for scaling image
+
+            height = height * ratio;
+            width = width * ratio;
+        }
+
+
+        if (height > maxHeight) {
+            ratio = maxHeight / height; // get ratio for scaling image
+            width = width * ratio;
+            height = height * ratio;
+        }
+        console.log("wait, what did this actually run");
+        this.height = height * .97;
+        this.width = width * .97;
+
+        this.style['margin-top'] = (aH-this.height) / 2 + "px";
+        a.append(this);
+    }
+
+}
+
+function openShop(item)
+{
+    var a = item.getElementsByClassName('detailedItemView')[0];
+    a.style.display = 'block';
+    sizeImg(a);
+}
+function closeItemView(a,event)
+{
+    a.parentNode.style.display = 'none';
+    event.stopPropagation();
+}

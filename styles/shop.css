@@ -322,15 +322,22 @@ h2 {
 
 
 /* end */
+img
+{
 
+    display:block;
+    margin:auto;
+}
 .detailedItemView
 {
   position:fixed;
   top:0;
+  left:0;
   z-index:9999;
   width:100%;
   height:100%;
   background:rgba(0,0,0,.50);
+  display:none;
 }
 .itemPicture
 {
@@ -346,7 +353,6 @@ h2 {
   height:30%;
   max-height:50%;
   background:white;
-  overflow-y:scroll;
 }
 .pay
 {
@@ -358,20 +364,27 @@ h2 {
 }
 .pay > div
 {
-  margin:auto;
-  margin-top:3%;
-  color:white;
   display:block;
-
-
-}
-.pay > div > p
-{
+  width:70%;
+  margin:auto;
+  margin-top:5%;
+  color:white;
   background:dodgerblue;
   border-radius:5px;
-  text-align: center;
   font-size:32px;
   padding:15px;
+  text-align: center;
+
+}
+.addToCart
+{
+}
+.checkout
+{
+}
+.pay > div > span
+{
+  
 }
 .details
 {
@@ -381,6 +394,8 @@ h2 {
   color:black;
   padding-top:3%;
   padding-left:3%;
+  overflow-y:scroll;
+  height: 100%;
 }
 .details > div
 {
@@ -389,4 +404,14 @@ h2 {
 .details > p
 {
   font-size:16px;
+}
+.closeItemView
+{
+  position:absolute;
+  z-index:999;
+  top:5px;
+  right:5px;
+  font-size:32px;
+  color:white;
+  cursor:pointer;
 }
