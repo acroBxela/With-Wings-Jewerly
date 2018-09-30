@@ -317,7 +317,8 @@ function sizeImg(parent) {
         this.width = width * .97;
 
         this.style['margin-top'] = (aH-this.height) / 2 + "px";
-        a.append(this);
+        console.log("appeneded");
+        a.appendChild(this);
     }
 
 }
@@ -326,10 +327,12 @@ function openShop(item)
 {
     var a = item.getElementsByClassName('detailedItemView')[0];
     a.style.display = 'block';
+    document.body.style.overflow = "hidden";
     sizeImg(a);
 }
 function closeItemView(a,event)
 {
     a.parentNode.style.display = 'none';
+    document.body.style.overflow = "auto";
     event.stopPropagation();
 }
