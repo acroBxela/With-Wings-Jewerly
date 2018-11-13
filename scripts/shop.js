@@ -21,13 +21,18 @@ function changeToSelectedCategory(string, clicked) {
     var copyOfCategory = document.getElementById(string).cloneNode(true);
     copyOfCategory.id += 'Copy';
     copyOfCategory.classList.remove('hidden');
+    var educationButton = document.createElement("div");
+    educationButton.appendChild(document.createTextNode("Learn the deeper meaning"));
+    educationButton.id = "education";
+    educationButton.onclick = openEducation;
+    shopWindow.appendChild(educationButton);
     shopWindow.appendChild(copyOfCategory);
-
+    alignEducation();
     currentlyOn = copyOfCategory.id;
     // Run custom code depending on which window is to be displayed
     if (string == 'tol') {
         setSelect();
-        currentlyOn = null;
+        
     }
     if (string == 'rStones') {
         setSpacers('rStonesCopy');
@@ -45,7 +50,7 @@ function changeToSelectedCategory(string, clicked) {
 }
 
 var resizeTimer;
-var currentlyOn;
+var currentlyOn = "tolCopy";
 
 window.onresize = function() {
     document.getElementById(currentlyOn).style.opacity = '0';
@@ -53,6 +58,7 @@ window.onresize = function() {
     resizeTimer = setTimeout(function() {
         setSpacers(currentlyOn);
         all(currentlyOn);
+        alignEducation();
     }, 250);
 
 };
@@ -135,7 +141,7 @@ function setSelect() {
         option.style.display = 'none';
     }
 
-
+    alignEducation();
 
 }
 //////////////////////End of Tree of Life Code////////////////////////////////////
@@ -145,6 +151,7 @@ function setSelect() {
 //////////////////Show Case Code///////////////////////
 /////////////////////////////////////////////////////////
 function all(category) {
+    if (category != "tolCopy"){
     var width = window.innerWidth * .20;
     var circle = document.getElementById(category).getElementsByClassName('circle');
     for (let i = 0; i < circle.length; i++) {
@@ -157,8 +164,12 @@ function all(category) {
     document.getElementById(category).getElementsByClassName('displayHolder')[0].style['margin-left'] = middle + 'px';
     document.getElementById(category).getElementsByClassName('displayHolder')[0].style.width = ((circle.length + 1) * (width / 2)) + 'px';
     document.getElementById(category).getElementsByClassName('displayHolder')[0].style.height = width + 'px';
-
     setHover(category);
+}
+    else
+    {
+        document.getElementById('tolCopy').style.opacity = "1";
+    }
 }
 
 function setHover(category) {
@@ -224,54 +235,56 @@ function setSpacers(category) {
 
     //Create a spacer, spacer creates a margin in front of the div floats
     //to center the containers
-    var spacer = document.createElement("div");
-    spacer.className = 'spacer';
+    if (category != "tolCopy"){
+        var spacer = document.createElement("div");
+        spacer.className = 'spacer';
 
-    //Create a rowDivider, a div with a clear float
-    var rowDivider = document.createElement("div");
-    rowDivider.className = 'rowDivider';
+        //Create a rowDivider, a div with a clear float
+        var rowDivider = document.createElement("div");
+        rowDivider.className = 'rowDivider';
 
 
-    var allBoxes = document.getElementById(category).getElementsByClassName('shopBox');
-    var items = [];
-    for (let i = 0; i < allBoxes.length; i++) {
-        items[i] = allBoxes[i].cloneNode(true);
-        items[i].className = 'shopBox';
-    }
-
-    var width = allBoxes[0].getBoundingClientRect().width;
-    var margin = Math.floor(document.documentElement.clientWidth * .02);
-    var widthWithMargin = width + margin;
-    var inARow = Math.floor(document.documentElement.clientWidth / widthWithMargin);
-    var totalWidth;
-    if (inARow >= items.length)
-        totalWidth = items.length * widthWithMargin - margin;
-    else
-        totalWidth = inARow * widthWithMargin - margin;
-    var spacerWidth = (document.documentElement.clientWidth - totalWidth) / 2;
-    spacer.style.width = spacerWidth + 'px';
-    var swindow = document.getElementById(category).getElementsByClassName('itemsHolder')[0];
-    swindow.innerHTML = "";
-
-    var inRow = 0;
-    for (let i = 0; i < items.length; i++) {
-        items[i].style['margin-left'] = margin + 'px';
-        if (inRow == inARow) {
-            swindow.appendChild(rowDivider.cloneNode(true));
-            inRow = 0;
+        var allBoxes = document.getElementById(category).getElementsByClassName('shopBox');
+        var items = [];
+        for (let i = 0; i < allBoxes.length; i++) {
+            items[i] = allBoxes[i].cloneNode(true);
+            items[i].className = 'shopBox';
         }
 
-        if (inRow == 0) {
-            swindow.appendChild(spacer.cloneNode(true));
-            items[i].classList.add('first');
+        var width = allBoxes[0].getBoundingClientRect().width;
+        var margin = Math.floor(document.documentElement.clientWidth * .02);
+        var widthWithMargin = width + margin;
+        var inARow = Math.floor(document.documentElement.clientWidth / widthWithMargin);
+        var totalWidth;
+        if (inARow >= items.length)
+            totalWidth = items.length * widthWithMargin - margin;
+        else
+            totalWidth = inARow * widthWithMargin - margin;
+        var spacerWidth = (document.documentElement.clientWidth - totalWidth) / 2;
+        spacer.style.width = spacerWidth + 'px';
+        var swindow = document.getElementById(category).getElementsByClassName('itemsHolder')[0];
+        swindow.innerHTML = "";
+
+        var inRow = 0;
+        for (let i = 0; i < items.length; i++) {
+            items[i].style['margin-left'] = margin + 'px';
+            if (inRow == inARow) {
+                swindow.appendChild(rowDivider.cloneNode(true));
+                inRow = 0;
+            }
+
+            if (inRow == 0) {
+                swindow.appendChild(spacer.cloneNode(true));
+                items[i].classList.add('first');
+            }
+            swindow.appendChild(items[i]);
+            inRow++;
+
+
         }
-        swindow.appendChild(items[i]);
-        inRow++;
-
-
+        document.getElementById(category).style.opacity = '1';
+        console.log(spacerWidth);
     }
-    document.getElementById(category).style.opacity = '1';
-    console.log(spacerWidth);
 }
 //////////////////End Of Raeki Stones Code////////////////////////
 /////////////////////////////////////////////////////////////////
@@ -336,3 +349,46 @@ function closeItemView(a,event)
     document.body.style.overflow = "auto";
     event.stopPropagation();
 }
+
+function alignEducation()
+{
+    var a = document.getElementById("education");
+    var width = a.getBoundingClientRect().width;
+    a.style['margin-left'] = document.documentElement.clientWidth/2 - (width/2) + "px";
+}  
+
+function openEducation()
+{
+    var div1 = document.createElement("div");
+    div1.style.width = document.documentElement.clientWidth + "px";
+    div1.style.height = document.documentElement.clientHeight + "px";
+    div1.style.opacity = "0";
+    div1.style.position = "fixed";
+    div1.style.top = "0";
+    div1.style['z-index'] = 99;
+
+    var div = document.createElement("div");
+    div.style.width = document.documentElement.clientWidth * .95 + "px";
+    div.style.height = document.documentElement.clientHeight * .95 + "px";
+    div.style['margin-left'] = (document.documentElement.clientWidth * .05)/2 + 'px';
+    div.style.background = 'white';
+    div.style.position = "fixed";
+    div.style.top = 0;
+    div.style['margin-top'] = (document.documentElement.clientHeight * .05)/2 + "px";
+    div.style['z-index'] = 100;
+    div.style['border-radius'] = "5px";
+
+    var close = document.createElement('div');
+    close.innerHTML = "&#215";
+    close.classList.add("closeItemView");
+    close.style.top = "2px";
+    close.style.right = "2px";
+    close.onclick = function(){div1.remove();div.remove();close.remove();}
+
+    div.appendChild(close);
+    document.getElementById('shopWindow').appendChild(div1);
+    document.getElementById("shopWindow").appendChild(div);
+
+    
+
+} 
