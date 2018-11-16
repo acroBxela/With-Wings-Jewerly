@@ -68,9 +68,10 @@ window.onresize = function() {
 
 ////// Tree of Life Code ////////
 ////////////////////////////////
-var lists = ["<div id='options'><div style='color:gold' onclick=select(this,'gold',0)>Gold</div><div style='color:silver' onclick=select(this,'silver',0)>Silver</div><div onclick=select(this,'#e5e4e2',0) style='color:#e5e4e2'>Platnium</div></div>",
-    "<div id='options'> <div style='color:red' onclick=select(this,'red',1)>Granite</div><div style='color:silver' onclick=select(this,'silver',1)>Stone 2</div> <div onclick=select(this,'blue',1) style='color:#e5e4e2'>Stone 3</div> </div>"
-];
+// a[0].outerHTML.replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/\s\s+/g, ' ');
+/*var lists = ["<div id='options' class='optionsForTol' ><div style='color:gold' onclick=select(this,'gold',0)>Gold</div><div style='color:silver' onclick=select(this,'silver',0)>Silver</div><div onclick=select(this,'#e5e4e2',0) style='color:#e5e4e2'>Platnium</div></div>",
+    "<div id='options' class='optionsForTol' ><div style='color:red' onclick=select(this,'red',1)>Granite</div><div style='color:silver' onclick=select(this,'silver',1)>Stone 2</div> <div onclick=select(this,'blue',1) style='color:#e5e4e2'>Stone 3</div></div>"
+]; */
 
 function toggle(select) {
     var options = select.getElementsByTagName('div')[0];
@@ -92,7 +93,6 @@ function select(a, color, index) {
     console.log(color);
     var select = a.parentNode.parentNode;
     var options = a.parentNode;
-    var colors = ['gold', 'silver', '#e5e4e2'];
     select.style.width = "";
     var widthOfA = a.getBoundingClientRect().width;
     options.style.width = "";
@@ -229,7 +229,11 @@ function setHover(category) {
 
 /////////////////////Raeki Stones Code////////////////////////
 /////////////////////////////////////////////////////////////
-window.onload = setSelect();
+window.onload = function(){
+    var a = document.getElementsByClassName('optionsForTol');
+    lists = [a[0].outerHTML.replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/\s\s+/g, ' '),a[1].outerHTML.replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/\s\s+/g, ' ')]
+    setSelect();
+}
 
 function setSpacers(category) {
 
@@ -362,7 +366,7 @@ function openEducation()
     var div1 = document.createElement("div");
     div1.style.width = document.documentElement.clientWidth + "px";
     div1.style.height = document.documentElement.clientHeight + "px";
-    div1.style.opacity = "0";
+    div1.style.background = "rgba(0,0,0,.13)"
     div1.style.position = "fixed";
     div1.style.top = "0";
     div1.style['z-index'] = 99;
@@ -377,18 +381,24 @@ function openEducation()
     div.style['margin-top'] = (document.documentElement.clientHeight * .05)/2 + "px";
     div.style['z-index'] = 100;
     div.style['border-radius'] = "5px";
+    div.className = "textInfoBox";
 
     var close = document.createElement('div');
     close.innerHTML = "&#215";
     close.classList.add("closeItemView");
+    close.classList.add('closeTextInfo');
     close.style.top = "2px";
     close.style.right = "2px";
-    close.onclick = function(){div1.remove();div.remove();close.remove();}
+    close.onclick = function(){document.getElementById('shopWindow').removeChild(div1);
+    document.getElementById('shopWindow').removeChild(div);document.getElementById('shopWindow').removeChild(close);}
 
-    div.appendChild(close);
+    if (currentlyOn == "tolCopy")
+    {
+        div.innerHTML += document.getElementById('tolInfo').innerHTML;
+    }
+    
     document.getElementById('shopWindow').appendChild(div1);
     document.getElementById("shopWindow").appendChild(div);
-
-    
+    document.getElementById('shopWindow').appendChild(close);
 
 } 

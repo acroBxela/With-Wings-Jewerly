@@ -1,3 +1,7 @@
+body
+{
+  overflow-x:hidden;
+}
 #shopNav {
     margin: auto;
     margin-top: 1%;
@@ -450,4 +454,31 @@ img
   border-radius:5px;
   text-align:center;
   cursor:pointer;
+}
+
+.informationForEducation
+{
+  display: none;
+
+}
+
+.closeTextInfo
+{
+  position: fixed !important;
+  opacity:.5;
+}
+
+.closeTextInfo:hover
+{
+  opacity: 1;
+}
+.textInfoBox
+{
+  overflow-y: scroll;
+}
+.textInfoBox > p
+{
+  text-align: center;
+  font-family: helvetica;
+  font-size: 20px;
 }
