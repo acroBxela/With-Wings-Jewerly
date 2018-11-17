@@ -153,7 +153,49 @@ function setSelect() {
 function all(category) {
     if (category != "tolCopy"){
     var width = window.innerWidth * .20;
-    var circle = document.getElementById(category).getElementsByClassName('circle');
+    var circleDivs = document.getElementById(category).getElementsByClassName('circle');
+    var circle = [0,0,0,0,0];
+    for (let i = 0;i < 5;i++)
+    {
+        circle[i] = circleDivs[i];
+    }
+    var mid;
+    for (let i = 0;i < circle.length;i++)
+    {
+        if (circle[i].getAttribute('data-layer') == '3')
+            mid = i;
+    }
+    for (let i = 0;i < 5;i++)
+        console.log(circle[i]);
+
+    console.log("------------------------------");
+    if (mid != 2)
+    {
+        var tmp = circle[2];
+        circle[2] = circle[mid];
+        circle[mid] = tmp;
+    }
+
+    if (circle[0].getAttribute('data-layer') == circle[1].getAttribute('data-layer'))
+    {
+        var tmp = circle[1];
+        circle[1] = circle[4];
+        circle[4] = tmp;
+    }
+    if (circle[0].getAttribute('data-layer') > circle[1].getAttribute('data-layer'))
+    {
+        var tmp = circle[1];
+        circle[1] = circle[0];
+        circle[0] = tmp;
+    }
+    if (circle[3].getAttribute('data-layer') < circle[4].getAttribute('data-layer'))
+    {
+        var tmp = circle[4];
+        circle[4] = circle[3];
+        circle[3] = tmp;
+    }
+    for (let i = 0;i < 5;i++)
+        console.log(circle[i]);
     for (let i = 0; i < circle.length; i++) {
         circle[i].style.width = width + 'px';
         circle[i].style.height = width + 'px';
