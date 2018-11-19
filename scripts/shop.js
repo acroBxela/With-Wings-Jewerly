@@ -540,5 +540,18 @@ function reEnableScroll(a){
     a.classList.remove('canScroll');
     console.log('overflow set to none here');
 }
+
+function toggleItemViewState(a)
+{
+    var currentlyUp = a.parentNode.parentNode.style.height == "80%";
+    if (currentlyUp){
+        a.parentNode.parentNode.style.height = "30%";
+        a.getElementsByTagName('i')[0].style['transform'] = 'rotate(180deg)';
+    }
+    else{
+        a.parentNode.parentNode.style.height = "80%";
+        a.getElementsByTagName('i')[0].style['transform'] = 'none';
+    }
+}
 /*                                                  */
 var heightDependantWindow = false;

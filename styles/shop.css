@@ -70,6 +70,19 @@ body
     {
       font-size:16px !important;
     }
+    .pullUpBar
+    {
+      width:50px;
+      height: 20px;
+      background: #eaeaea;
+      position: absolute;
+      top:0;
+      left:40%;
+      transform: translate(0%,-50%);
+      text-align: center;
+      border-radius:5px;
+      display:block !important;
+    }
 }
 
 
@@ -347,6 +360,7 @@ img
   height:100%;
   background:rgba(0,0,0,.85);
   display:none;
+
 }
 .itemPicture
 {
@@ -363,6 +377,7 @@ img
   min-height: 30%;
   max-height:80%;
   background:white;
+  transition: height .3s;
 }
 .pay
 {
@@ -405,6 +420,7 @@ img
   padding-left:3%;
   overflow-y:none;
   height: 100%;
+  overflow-y: scroll;
 }
 .canScroll
 {
@@ -445,6 +461,24 @@ img
   display:inline-block;
 }
 
+.pullUpBar
+{
+  width:50px;
+  height: 20px;
+  background: #eaeaea;
+  position: absolute;
+  top:0;
+  left:40%;
+  transform: translate(0%,-50%);
+  text-align: center;
+  border-radius:5px;
+  display:none;
+}
+
+.arrowForpullUpBar
+{
+  transform: rotate(180deg);
+}
 #education
 {
   display:inline-block;
@@ -483,3 +517,4 @@ img
   font-family: helvetica;
   font-size: 20px;
 }
+
