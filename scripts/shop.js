@@ -543,6 +543,9 @@ function reEnableScroll(a){
 
 function toggleItemViewState(a)
 {
+    var instrText = a.getElementsByTagName('div');
+    if (instrText.length > 0)
+        a.removeChild(instrText[0]);
     var currentlyUp = a.parentNode.parentNode.style.height == "80%";
     if (currentlyUp){
         a.parentNode.parentNode.style.height = "30%";
