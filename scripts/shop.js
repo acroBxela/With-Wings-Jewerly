@@ -1,5 +1,3 @@
-
-
 //////General Code for all the categories here////////
 //////////////////////////////////////////////////////
 function changeToSelectedCategory(string, clicked) {
@@ -34,12 +32,12 @@ function changeToSelectedCategory(string, clicked) {
     // Run custom code depending on which window is to be displayed
     if (string == 'tol') {
         setSelect();
-        
+
     }
     if (string == 'rStones') {
         setSpacers('rStonesCopy');
         all('rStonesCopy');
-        
+
     }
     if (string == 'stones') {
         setSpacers('stonesCopy');
@@ -56,32 +54,28 @@ var currentlyOn = "tolCopy";
 
 window.onresize = function() {
     alignEducation();
-    if (window.innerHeight != orginalHeight || window.innerWidth != orginalWidth){
-            if (!mobileCheck()){
-                orginalWidth = window.innerWidth;
-                orginalHeight = window.innerHeight;
-                document.getElementById(currentlyOn).style.opacity = '0';
-                clearTimeout(resizeTimer);
-                if (heightDependantWindow)
-                {
-                    if (heightDependantWindow == "education")
-                    {
-                        resizeEducationWindow();
-                    }           
-                }
-                resizeTimer = setTimeout(function() {
-                    setSpacers(currentlyOn);
-                    all(currentlyOn);
-                }, 250);
-        
-            }
-            if (heightDependantWindow)
-            {
-                if (heightDependantWindow == "education")
-                {
+    if (window.innerHeight != orginalHeight || window.innerWidth != orginalWidth) {
+        if (!mobileCheck()) {
+            orginalWidth = window.innerWidth;
+            orginalHeight = window.innerHeight;
+            document.getElementById(currentlyOn).style.opacity = '0';
+            clearTimeout(resizeTimer);
+            if (heightDependantWindow) {
+                if (heightDependantWindow == "education") {
                     resizeEducationWindow();
-                }           
+                }
             }
+            resizeTimer = setTimeout(function() {
+                setSpacers(currentlyOn);
+                all(currentlyOn);
+            }, 250);
+
+        }
+        if (heightDependantWindow) {
+            if (heightDependantWindow == "education") {
+                resizeEducationWindow();
+            }
+        }
     }
 };
 
@@ -173,65 +167,63 @@ function setSelect() {
 //////////////////Show Case Code///////////////////////
 /////////////////////////////////////////////////////////
 function all(category) {
-    if (category != "tolCopy"){
-    var width = window.innerWidth * .20;
-    var circleDivs = document.getElementById(category).getElementsByClassName('circle');
-    var circle = [0,0,0,0,0];
-    for (let i = 0;i < 5;i++)
-    {
-        circle[i] = circleDivs[i];
-    }
-    var mid;
-    for (let i = 0;i < circle.length;i++)
-    {
-        if (circle[i].getAttribute('data-layer') == '3')
-            mid = i;
-    }
-    for (let i = 0;i < 5;i++)
-        console.log(circle[i]);
 
-    console.log("------------------------------");
-    if (mid != 2)
-    {
-        var tmp = circle[2];
-        circle[2] = circle[mid];
-        circle[mid] = tmp;
-    }
+    if (category != "tolCopy") {
+        if (mobileCheck())
+        {
+            setMobileAll(category);
+            return false;
+        }
+        var width = window.innerWidth * .20;
+        var circleDivs = document.getElementById(category).getElementsByClassName('circle');
+        var circle = [0, 0, 0, 0, 0];
+        for (let i = 0; i < 5; i++) {
+            circle[i] = circleDivs[i];
+        }
+        var mid;
+        for (let i = 0; i < circle.length; i++) {
+            if (circle[i].getAttribute('data-layer') == '3')
+                mid = i;
+        }
+        for (let i = 0; i < 5; i++)
+            console.log(circle[i]);
 
-    if (circle[0].getAttribute('data-layer') == circle[1].getAttribute('data-layer'))
-    {
-        var tmp = circle[1];
-        circle[1] = circle[4];
-        circle[4] = tmp;
-    }
-    if (circle[0].getAttribute('data-layer') > circle[1].getAttribute('data-layer'))
-    {
-        var tmp = circle[1];
-        circle[1] = circle[0];
-        circle[0] = tmp;
-    }
-    if (circle[3].getAttribute('data-layer') < circle[4].getAttribute('data-layer'))
-    {
-        var tmp = circle[4];
-        circle[4] = circle[3];
-        circle[3] = tmp;
-    }
-    for (let i = 0;i < 5;i++)
-        console.log(circle[i]);
-    for (let i = 0; i < circle.length; i++) {
-        circle[i].style.width = width + 'px';
-        circle[i].style.height = width + 'px';
-        circle[i].style['margin-left'] = (i * width / 2) + 'px';
-    }
-    var middle = (window.innerWidth / 2) - ((circle.length - 1) * width / 2) + (width / 2);
-    console.log(window.innerWidth / 2);
-    document.getElementById(category).getElementsByClassName('displayHolder')[0].style['margin-left'] = middle + 'px';
-    document.getElementById(category).getElementsByClassName('displayHolder')[0].style.width = ((circle.length + 1) * (width / 2)) + 'px';
-    document.getElementById(category).getElementsByClassName('displayHolder')[0].style.height = width + 'px';
-    setHover(category);
-}
-    else
-    {
+        console.log("------------------------------");
+        if (mid != 2) {
+            var tmp = circle[2];
+            circle[2] = circle[mid];
+            circle[mid] = tmp;
+        }
+
+        if (circle[0].getAttribute('data-layer') == circle[1].getAttribute('data-layer')) {
+            var tmp = circle[1];
+            circle[1] = circle[4];
+            circle[4] = tmp;
+        }
+        if (circle[0].getAttribute('data-layer') > circle[1].getAttribute('data-layer')) {
+            var tmp = circle[1];
+            circle[1] = circle[0];
+            circle[0] = tmp;
+        }
+        if (circle[3].getAttribute('data-layer') < circle[4].getAttribute('data-layer')) {
+            var tmp = circle[4];
+            circle[4] = circle[3];
+            circle[3] = tmp;
+        }
+        for (let i = 0; i < 5; i++)
+            console.log(circle[i]);
+        for (let i = 0; i < circle.length; i++) {
+            circle[i].style.width = width + 'px';
+            circle[i].style.height = width + 'px';
+            circle[i].style['margin-left'] = (i * width / 2) + 'px';
+        }
+        var middle = (window.innerWidth / 2) - ((circle.length - 1) * width / 2) + (width / 2);
+        console.log(window.innerWidth / 2);
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].style['margin-left'] = middle + 'px';
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].style.width = ((circle.length + 1) * (width / 2)) + 'px';
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].style.height = width + 'px';
+        setHover(category);
+    } else {
         document.getElementById('tolCopy').style.opacity = "1";
     }
 }
@@ -288,6 +280,60 @@ function setHover(category) {
         };
     }
 }
+
+function setMobileAll(category)
+{
+    return false;
+    var width = window.innerWidth * .30;
+        var circleDivs = document.getElementById(category).getElementsByClassName('circle');
+        var circle = [0, 0, 0, 0, 0];
+        for (let i = 0; i < 5; i++) {
+            circle[i] = circleDivs[i];
+        }
+        var mid;
+        for (let i = 0; i < circle.length; i++) {
+            if (circle[i].getAttribute('data-layer') == '3')
+                mid = i;
+        }
+        for (let i = 0; i < 5; i++)
+            console.log(circle[i]);
+
+        console.log("------------------------------");
+        if (mid != 2) {
+            var tmp = circle[2];
+            circle[2] = circle[mid];
+            circle[mid] = tmp;
+        }
+
+        if (circle[0].getAttribute('data-layer') == circle[1].getAttribute('data-layer')) {
+            var tmp = circle[1];
+            circle[1] = circle[4];
+            circle[4] = tmp;
+        }
+        if (circle[0].getAttribute('data-layer') > circle[1].getAttribute('data-layer')) {
+            var tmp = circle[1];
+            circle[1] = circle[0];
+            circle[0] = tmp;
+        }
+        if (circle[3].getAttribute('data-layer') < circle[4].getAttribute('data-layer')) {
+            var tmp = circle[4];
+            circle[4] = circle[3];
+            circle[3] = tmp;
+        }
+        for (let i = 0; i < 5; i++)
+            console.log(circle[i]);
+        for (let i = 0; i < 5; i++) {
+            circle[i].style.width = width + 'px';
+            circle[i].style.height = width + 'px';
+            circle[i].style['margin-left'] = (i * width / 2) + 'px';
+        }
+        var middle = (window.innerWidth / 2) - ((circle.length - 1) * width / 2) + (width / 2);
+        console.log(window.innerWidth / 2);
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].style['margin-left'] = middle + 'px';
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].style.width = ((circle.length + 1) * (width / 2)) + 'px';
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].style.height = width + 'px';
+        
+}
 /////////////////////////////////////////End of Show Case Code////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -295,9 +341,9 @@ function setHover(category) {
 /////////////////////////////////////////////////////////////
 var orginalWidth;
 var orginalHeight;
-window.onload = function(){
+window.onload = function() {
     var a = document.getElementsByClassName('optionsForTol');
-    lists = [a[0].outerHTML.replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/\s\s+/g, ' '),a[1].outerHTML.replace(/(\r\n\t|\n|\r\t)/gm,"").replace(/\s\s+/g, ' ')]
+    lists = [a[0].outerHTML.replace(/(\r\n\t|\n|\r\t)/gm, "").replace(/\s\s+/g, ' '), a[1].outerHTML.replace(/(\r\n\t|\n|\r\t)/gm, "").replace(/\s\s+/g, ' ')]
     orginalWidth = window.innerWidth;
     orginalHeight = window.innerHeight;
     setSelect();
@@ -307,7 +353,7 @@ function setSpacers(category) {
 
     //Create a spacer, spacer creates a margin in front of the div floats
     //to center the containers
-    if (category != "tolCopy"){
+    if (category != "tolCopy") {
         var spacer = document.createElement("div");
         spacer.className = 'spacer';
 
@@ -369,9 +415,9 @@ function sizeImg(parent) {
 
     var img = new Image();
     img.src = parent.getElementsByClassName('imageInfo')[0].getAttribute('data-src');
-    img.onload = function(){
+    img.onload = function() {
         console.log("width is ", this.width);
-        console.log("heghit is " ,this.height)
+        console.log("heghit is ", this.height)
         var a = parent.getElementsByClassName('itemPicture')[0];
         var aWidth = a.getBoundingClientRect().width;
         var aH = a.getBoundingClientRect().height;
@@ -401,36 +447,33 @@ function sizeImg(parent) {
         this.height = height * .97;
         this.width = width * .97;
 
-        this.style['margin-top'] = (aH-this.height) / 2 + "px";
+        this.style['margin-top'] = (aH - this.height) / 2 + "px";
         console.log("appeneded");
         a.appendChild(this);
     }
 
 }
 
-function openShop(item)
-{
+function openShop(item) {
     var a = item.getElementsByClassName('detailedItemView')[0];
     a.style.display = 'block';
     document.body.style.overflow = "hidden";
     sizeImg(a);
 }
-function closeItemView(a,event)
-{
+
+function closeItemView(a, event) {
     a.parentNode.style.display = 'none';
     document.body.style.overflow = "auto";
     event.stopPropagation();
 }
 
-function alignEducation()
-{
+function alignEducation() {
     var a = document.getElementById("education");
     var width = a.getBoundingClientRect().width;
-    a.style['margin-left'] = document.documentElement.clientWidth/2 - (width/2) + "px";
-}  
+    a.style['margin-left'] = document.documentElement.clientWidth / 2 - (width / 2) + "px";
+}
 
-function openEducation()
-{
+function openEducation() {
     var div1 = document.createElement("div");
     div1.style.width = document.documentElement.clientWidth + "px";
     div1.style.height = window.innerHeight + "px";
@@ -443,11 +486,11 @@ function openEducation()
     var div = document.createElement("div");
     div.style.width = document.documentElement.clientWidth * .95 + "px";
     div.style.height = window.innerHeight * .95 + "px";
-    div.style['margin-left'] = (document.documentElement.clientWidth * .05)/2 + 'px';
+    div.style['margin-left'] = (document.documentElement.clientWidth * .05) / 2 + 'px';
     div.style.background = 'white';
     div.style.position = "fixed";
     div.style.top = 0;
-    div.style['margin-top'] = (window.innerHeight * .05)/2 + "px";
+    div.style['margin-top'] = (window.innerHeight * .05) / 2 + "px";
     div.style['z-index'] = 100;
     div.style['border-radius'] = "5px";
     div.className = "textInfoBox";
@@ -458,24 +501,26 @@ function openEducation()
     close.classList.add('closeTextInfo');
     close.style.top = "2px";
     close.style.right = "2px";
-    close.onclick = function(){document.getElementById('shopWindow').removeChild(div1);
-    document.getElementById('shopWindow').removeChild(div);document.getElementById('shopWindow').removeChild(close); heightDependantWindow = false;}
+    close.onclick = function() {
+        document.getElementById('shopWindow').removeChild(div1);
+        document.getElementById('shopWindow').removeChild(div);
+        document.getElementById('shopWindow').removeChild(close);
+        heightDependantWindow = false;
+    }
 
     heightDependantWindow = "education";
 
-    if (currentlyOn == "tolCopy")
-    {
+    if (currentlyOn == "tolCopy") {
         div.innerHTML += document.getElementById('tolInfo').innerHTML;
     }
-    
+
     document.getElementById('shopWindow').appendChild(div1);
     document.getElementById("shopWindow").appendChild(div);
     document.getElementById('shopWindow').appendChild(close);
 
-} 
+}
 
-function resizeEducationWindow()
-{
+function resizeEducationWindow() {
     var a = document.getElementsByClassName('textInfoBox')[0];
     var b = document.getElementsByClassName('textInfoBoxWrapper')[0];
 
@@ -484,48 +529,49 @@ function resizeEducationWindow()
 
     a.style.width = document.documentElement.clientWidth * .95 + "px";
     a.style.height = window.innerHeight * .95 + "px";
-    a.style['margin-left'] = (document.documentElement.clientWidth * .05)/2 + 'px';
+    a.style['margin-left'] = (document.documentElement.clientWidth * .05) / 2 + 'px';
 
 }
+
 function mobileCheck() {
-  var check = false;
-  (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
-  return check;
+    var check = false;
+    (function(a) { if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true; })(navigator.userAgent || navigator.vendor || window.opera);
+    return check;
 }
 
 /* dragging event for the itemview */
 var dragX = false;
 var dragY = false;
 var element;
-function startDrag(a,e)
-{
+
+function startDrag(a, e) {
     dragX = e.touches[0].clientX;
     dragY = e.touches[0].clientY;
     element = a;
     console.log(e);
 }
 
-function endDrag()
-{
+function endDrag() {
     dragX = false;
     dragY = false;
     element = null;
 }
 
 var lastScrollTop;
-function calculateDiff(a,e)
-{
-    
-  a.childNodes[1].classList.remove('canScroll');
+
+function calculateDiff(a, e) {
+
+    a.childNodes[1].classList.remove('canScroll');
 
     var height = a.getBoundingClientRect().height;
     height = document.documentElement.clientHeight - e.touches[0].clientY;
     a.style.height = height + 'px';
     console.log(height);
-    
+
 }
-function stopFromScroll(a,event){
-   
+
+function stopFromScroll(a, event) {
+
     console.log("scrolling has started on the paragraph");;
     event.stopPropagation();
     //a.parentNode.style['overflow-y'] = 'scroll';
@@ -534,24 +580,22 @@ function stopFromScroll(a,event){
     console.log('lastScrollTop is ' + lastScrollTop);
 }
 
-function reEnableScroll(a){
+function reEnableScroll(a) {
     console.log('touch ended');
     //a.parentNode.style['overflow-y'] = 'none';
     a.classList.remove('canScroll');
     console.log('overflow set to none here');
 }
 
-function toggleItemViewState(a)
-{
+function toggleItemViewState(a) {
     var instrText = a.getElementsByTagName('div');
     if (instrText.length > 0)
         a.removeChild(instrText[0]);
     var currentlyUp = a.parentNode.parentNode.style.height == "80%";
-    if (currentlyUp){
+    if (currentlyUp) {
         a.parentNode.parentNode.style.height = "30%";
         a.getElementsByTagName('i')[0].style['transform'] = 'rotate(180deg)';
-    }
-    else{
+    } else {
         a.parentNode.parentNode.style.height = "80%";
         a.getElementsByTagName('i')[0].style['transform'] = 'none';
     }
