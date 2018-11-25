@@ -581,6 +581,10 @@ function openEducation() {
     if (currentlyOn == "tolCopy") {
         div.innerHTML += document.getElementById('tolInfo').innerHTML;
     }
+    else if (currentlyOn == 'rStonesCopy')
+    {
+        div.innerHTML += document.getElementById('rStonesInfo').innerHTML;
+    }
 
     document.getElementById('shopWindow').appendChild(div1);
     document.getElementById("shopWindow").appendChild(div);

@@ -96,7 +96,6 @@ body
 
 }
 
-
 #tolCopy>p,
 #tol>p {
     text-align: center;
@@ -214,6 +213,7 @@ body
     background-size: cover;
     position: relative;
     float: left;
+    cursor:pointer;
 }
 
 .first {
@@ -333,6 +333,17 @@ circle:hover
 }
 
 
+.shopShowCase
+{
+  width:30%;
+  margin:auto;
+  padding:10px;
+  background: dodgerblue;
+  text-align: center;
+  color:white;
+  font-size:25px;
+  cursor: pointer;
+}
 /*
 .activeCircle:hover
 {
@@ -372,6 +383,7 @@ img
   background:rgba(0,0,0,.85);
   display:none;
 
+
 }
 .itemPicture
 {
@@ -410,7 +422,8 @@ img
   font-size:32px;
   padding:15px;
   text-align: center;
-
+  cursor: pointer;
+  
 }
 .addToCart
 {
