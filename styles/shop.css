@@ -83,6 +83,17 @@ body
       border-radius:5px;
       display:block !important;
     }
+    .circle
+    {
+      transition: none !important;
+    }
+
+    .activeCircle
+    {
+      box-shadow:-1px 6px 20px black;
+      margin-top:0px !important;
+    }
+
 }
 
 

@@ -283,13 +283,15 @@ function setHover(category) {
 
 function setMobileAll(category)
 {
-    return false;
-    var width = window.innerWidth * .30;
+    
+    var width = window.innerWidth * .32;
         var circleDivs = document.getElementById(category).getElementsByClassName('circle');
         var circle = [0, 0, 0, 0, 0];
         for (let i = 0; i < 5; i++) {
             circle[i] = circleDivs[i];
+            circle[i].classList.remove('activeCircle');
         }
+        circle[0].classList.add('activeCircle');
         var mid;
         for (let i = 0; i < circle.length; i++) {
             if (circle[i].getAttribute('data-layer') == '3')
@@ -325,14 +327,68 @@ function setMobileAll(category)
         for (let i = 0; i < 5; i++) {
             circle[i].style.width = width + 'px';
             circle[i].style.height = width + 'px';
-            circle[i].style['margin-left'] = (i * width / 2) + 'px';
+            circle[i].onclick = mobileShowCaseCenterCircle;
+            circle[i].style['margin-left'] = ((i+1)*10) + (i * width) + 'px';   
         }
+        var spacer = document.createElement('div');
+        spacer.style.position = 'absolute'
+        spacer.style['margin-left'] = 6*10 + (5 * width) + 'px';
+        spacer.style.width = '10px';
+        spacer.style.height = '1px';
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].appendChild(spacer);
         var middle = (window.innerWidth / 2) - ((circle.length - 1) * width / 2) + (width / 2);
         console.log(window.innerWidth / 2);
-        document.getElementById(category).getElementsByClassName('displayHolder')[0].style['margin-left'] = middle + 'px';
-        document.getElementById(category).getElementsByClassName('displayHolder')[0].style.width = ((circle.length + 1) * (width / 2)) + 'px';
-        document.getElementById(category).getElementsByClassName('displayHolder')[0].style.height = width + 'px';
+        document.getElementsByClassName('showCaseItemName')[0].innerHTML = circle[0].dataset.name;
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].style.position = "relative";
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].style['overflow-x'] = 'hidden';
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].style.width = window.innerWidth;
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].style.height = width+20 + 'px';
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].style['padding-bottom'] = "2%";
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].ontouchstart = mobileShowCaseDragStart;
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].ontouchmove = mobileShowCaseScroll;
+        document.getElementById(category).getElementsByClassName('displayHolder')[0].ontouchend = mobileShowCaseScrollReset;
+
         
+}
+
+/*** Mobile Showcase Start ***/
+
+var showCaseDragStart = 0;
+var base = 0;
+
+function mobileShowCaseDragStart(evt)
+{
+    showCaseDragStart = evt.touches[0].clientX;
+}
+
+function mobileShowCaseScroll(evt)
+{
+    var scrollAmount;
+    if (true)//this.scrollLeft - (showCaseDragStart - evt.touches[0].clientX) > 0)
+        scrollAmount = showCaseDragStart - evt.touches[0].clientX;
+    else
+        scrollAmount = 0;
+
+    this.scrollLeft = base + scrollAmount;
+}
+
+function mobileShowCaseScrollReset()
+{
+    base = this.scrollLeft;
+}
+
+
+function mobileShowCaseCenterCircle()
+{
+      var showCase = document.getElementsByClassName('showCaseItemName')[0];
+      showCase.innerHTML = this.dataset.name;
+      var circles = document.getElementById('shopWindow').getElementsByClassName('circle');
+      for (let i = 0;i < 5;i++)
+      {
+        circles[i].classList.remove('activeCircle');
+      }
+      this.classList.add("activeCircle");   
+      
 }
 /////////////////////////////////////////End of Show Case Code////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -454,9 +510,21 @@ function sizeImg(parent) {
 
 }
 
+function openShopCircles()
+{
+    var circles = document.getElementById(currentlyOn).getElementsByClassName('circle');
+    var activeCircle;
+    for (let i = 0;i < circles.length;i++)
+    {
+        if (circles[i].classList.contains('activeCircle'))
+            activeCircle = circles[i];
+    }
+    openShop(activeCircle);
+}
 function openShop(item) {
-    var a = item.getElementsByClassName('detailedItemView')[0];
+    var a = item.getElementsByClassName('detailedItemView')[0].cloneNode(true);
     a.style.display = 'block';
+    document.getElementById(currentlyOn).appendChild(a);
     document.body.style.overflow = "hidden";
     sizeImg(a);
 }
